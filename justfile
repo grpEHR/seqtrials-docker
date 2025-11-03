@@ -11,3 +11,6 @@ armbuild:
 publish version:
     docker tag seqtrials remlapmot/seqtrials:{{ version }}
     docker push remlapmot/seqtrials:{{ version }}
+test:
+    docker run --platform linux/amd64 --rm seqtrials R -e "library(SEQTaRget)"
+    docker run --platform linux/arm64 --rm seqtrials R -e "library(SEQTaRget)"
