@@ -8,3 +8,6 @@ bash:
     docker run -it --rm seqtrials bash
 armbuild:
     docker build --platform linux/arm64 --tag seqtrials .
+publish version:
+    docker tag seqtrials remlapmot/seqtrials:{{ version }}
+    docker push remlapmot/seqtrials:{{ version }}
