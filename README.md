@@ -12,3 +12,20 @@ And run
 ```sh
 just build
 ```
+
+For the multi-architecture build run
+
+```sh
+just mpbuild
+```
+
+and to test
+
+```sh
+just test
+```
+
+## Possible additional packages to add/compare
+
+* [TrialEmulation](https://cran.r-project.org/package=TrialEmulation)
+* [debiasedTrialEmulation](https://cran.r-project.org/package=debiasedTrialEmulation)
