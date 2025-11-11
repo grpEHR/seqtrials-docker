@@ -12,5 +12,5 @@ publish version:
     docker tag seqtrials remlapmot/seqtrials:{{ version }}
     docker push remlapmot/seqtrials:{{ version }}
 test:
-    docker run --platform linux/amd64 --rm seqtrials R -e "library(SEQTaRget); packageVersion('SEQTaRget')"
-    docker run --platform linux/arm64 --rm seqtrials R -e "library(SEQTaRget); packageVersion('SEQTaRget')"
+    docker run --platform linux/amd64 --rm -v $PWD:/home seqtrials bash /home/tests.sh
+    docker run --platform linux/arm64 --rm -v $PWD:/home seqtrials bash /home/tests.sh
