@@ -1,5 +1,5 @@
 FROM rocker/r-ver:4.5.2
-ARG QUARTO_VERSION=1.8.25
+ARG QUARTO_VERSION=1.8.26
 ARG CRAN_DATE=2025-11-11
 RUN <<EOF
     ARCH=$(dpkg --print-architecture)
