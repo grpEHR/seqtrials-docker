@@ -14,3 +14,5 @@ publish version:
 test:
     docker run --platform linux/amd64 --rm -v $PWD:/home seqtrials bash /home/tests.sh
     docker run --platform linux/arm64 --rm -v $PWD:/home seqtrials bash /home/tests.sh
+nvplbuild:
+    docker build --pull --platform linux/arm64 --tag seqtrials --file nvpl.Dockerfile .
