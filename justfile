@@ -16,3 +16,5 @@ test:
     docker run --platform linux/arm64 --rm -v $PWD:/home seqtrials bash /home/tests.sh
 nvplbuild:
     docker build --pull --platform linux/arm64 --tag seqtrials --file nvpl.Dockerfile .
+ompbuild:
+    docker build --pull --platform linux/arm64 --tag seqtrials --file openblas-openmp.Dockerfile .
