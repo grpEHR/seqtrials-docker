@@ -12,20 +12,15 @@ RUN <<EOF
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/sbsa/cuda-keyring_1.1-1_all.deb
     dpkg -i cuda-keyring_1.1-1_all.deb
     apt-get update; apt-get -y install nvpl
+     update-alternatives --install /usr/lib/aarch64-linux-gnu/libblas.so.3 libblas.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so.0 100
+     update-alternatives --set libblas.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so.0
+     update-alternatives --install /usr/lib/aarch64-linux-gnu/libblas.so libblas.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so 100
+     update-alternatives --set libblas.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so
+     update-alternatives --install /usr/lib/aarch64-linux-gnu/liblapack.so.3 liblapack.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so.0 100
+     update-alternatives --set liblapack.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so.0
+     update-alternatives --install /usr/lib/aarch64-linux-gnu/liblapack.so liblapack.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so 100
+     update-alternatives --set liblapack.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so
 EOF
-# RUN <<EOF
-#     update-alternatives --install /usr/lib/aarch64-linux-gnu/libblas.so.3 libblas.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so.0 100
-#     update-alternatives --set libblas.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so.0
-#
-#     update-alternatives --install /usr/lib/aarch64-linux-gnu/libblas.so libblas.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so 100
-#     update-alternatives --set libblas.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_blas_core.so
-#
-#     update-alternatives --install /usr/lib/aarch64-linux-gnu/liblapack.so.3 liblapack.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so.0 100
-#     update-alternatives --set liblapack.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so.0
-# 
-#     update-alternatives --install /usr/lib/aarch64-linux-gnu/liblapack.so liblapack.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so 100
-#     update-alternatives --set liblapack.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so
-# EOF
 
 # echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'/bin/linux/noble-%s/%s", R.version["arch"], substr(getRversion(), 1, 3))))' > ~/.Rprofile
 # R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc'))"
