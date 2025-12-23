@@ -17,12 +17,12 @@ RUN <<EOF
     update-alternatives --install \
       /usr/lib/aarch64-linux-gnu/libblas.so.3 \
       libblas.so.3-aarch64-linux-gnu \
-      /usr/lib/aarch64-linux-gnu/libnvpl_blas_lp64_gomp.so 100
+      /usr/lib/aarch64-linux-gnu/libnvpl_blas_lp64_gomp.so 150
     
     update-alternatives --install \
       /usr/lib/aarch64-linux-gnu/liblapack.so.3 \
       liblapack.so.3-aarch64-linux-gnu \
-      /usr/lib/aarch64-linux-gnu/libnvpl_lapack_lp64_gomp.so 100
+      /usr/lib/aarch64-linux-gnu/libnvpl_lapack_lp64_gomp.so 150
     
     # Then select them
     sudo update-alternatives --config libblas.so.3-aarch64-linux-gnu
