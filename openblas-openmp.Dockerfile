@@ -9,7 +9,9 @@ RUN <<EOF
     dpkg -i quarto-${QUARTO_VERSION}-linux-${ARCH}.deb
     ALTARCH=$(uname -m)
     update-alternatives --set libblas.so.3-${ALTARCH}-linux-gnu /usr/lib/${ALTARCH}-linux-gnu/openblas-openmp/libblas.so.3
+    update-alternatives --set libblas.so-${ALTARCH}-linux-gnu /usr/lib/${ALTARCH}-linux-gnu/openblas-openmp/libblas.so
     update-alternatives --set liblapack.so.3-${ALTARCH}-linux-gnu /usr/lib/${ALTARCH}-linux-gnu/openblas-openmp/liblapack.so.3
+    update-alternatives --set liblapack.so-${ALTARCH}-linux-gnu /usr/lib/${ALTARCH}-linux-gnu/openblas-openmp/liblapack.so
     echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'/bin/linux/noble-%s/%s", R.version["arch"], substr(getRversion(), 1, 3))))' > ~/.Rprofile
     R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc'))"
 EOF
