@@ -27,10 +27,13 @@ RUN <<EOF
     # Then select them
     sudo update-alternatives --config libblas.so.3-aarch64-linux-gnu
     sudo update-alternatives --config liblapack.so.3-aarch64-linux-gnu
+    
+    echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'/bin/linux/noble-%s/%s", R.version["arch"], substr(getRversion(), 1, 3))))' > ~/.Rprofile
+    R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc'))"
 EOF
 
 
-# Install NVPL
+
 # wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/sbsa/cuda-keyring_1.1-1_all.deb
 # dpkg -i cuda-keyring_1.1-1_all.deb
 # apt-get update; apt-get remove -y libopenblas-dev; apt-get -y install nvpl
@@ -42,6 +45,3 @@ EOF
 # update-alternatives --set liblapack.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so.0
 # update-alternatives --install /usr/lib/aarch64-linux-gnu/liblapack.so liblapack.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so 100
 # update-alternatives --set liblapack.so-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libnvpl_lapack_core.so
-
-# echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'/bin/linux/noble-%s/%s", R.version["arch"], substr(getRversion(), 1, 3))))' > ~/.Rprofile
-# R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc'))"
