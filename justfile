@@ -18,3 +18,5 @@ nvplbuild:
     docker build --pull --platform linux/arm64 --tag seqtrials --file nvpl.Dockerfile .
 ompbuild:
     docker build --pull --platform linux/arm64 --tag seqtrials --file openblas-openmp.Dockerfile .
+mklbuild:
+    docker build --pull --platform linux/amd64 --tag seqtrials --file mkl.Dockerfile .
