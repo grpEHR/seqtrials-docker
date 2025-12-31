@@ -14,16 +14,16 @@ RUN <<EOF
     apt-get update; apt-get -y install intel-mkl
     
     update-alternatives --install \
-      /usr/lib/aarch64-linux-gnu/libblas.so.3 \
+      /usr/lib/x86_64-linux-gnu/libblas.so.3 \
       libblas.so.3-aarch64-linux-gnu \
-      /usr/lib/aarch64-linux-gnu/libmkl_rt.so 150
+      /usr/lib/x86_64-linux-gnu/libmkl_rt.so 150
     
-    update-alternatives --set libblas.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libmkl_rt.so
+    update-alternatives --set libblas.so.3-x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/libmkl_rt.so
     
     update-alternatives --install \
       /usr/lib/aarch64-linux-gnu/liblapack.so.3 \
-      liblapack.so.3-aarch64-linux-gnu \
-      /usr/lib/aarch64-linux-gnu/libmkl_rt.so 150
+      liblapack.so.3-x86_64-linux-gnu \
+      /usr/lib/x86_64-linux-gnu/libmkl_rt.so 150
     
-    update-alternatives --set liblapack.so.3-aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/libmkl_rt.so
+    update-alternatives --set liblapack.so.3-x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/libmkl_rt.so
 EOF
