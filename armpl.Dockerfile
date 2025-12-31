@@ -3,7 +3,7 @@ ARG QUARTO_VERSION=1.8.26
 ARG CRAN_DATE=2025-12-22
 RUN <<EOF
     ARCH=$(dpkg --print-architecture)
-    apt-get update; apt-get install wget time curl
+    apt-get update; apt-get install wget time curl tee
     cd tmp
     wget -nv https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${ARCH}.deb
     dpkg -i quarto-${QUARTO_VERSION}-linux-${ARCH}.deb
@@ -19,9 +19,7 @@ RUN <<EOF
     . /etc/os-release
     curl "https://developer.arm.com/packages/arm-toolchains:${NAME,,}-${VERSION_ID/%.*/}/${VERSION_CODENAME}/Release.key" | tee /etc/apt/trusted.gpg.d/developer-arm-com.asc
     echo "deb https://developer.arm.com/packages/arm-toolchains:${NAME,,}-${VERSION_ID/%.*/}/${VERSION_CODENAME}/ ./" | tee /etc/apt/sources.list.d/developer-arm-com.list
-    apt-get update
-    
-    apt-get install arm-performance-libraries
+    apt-get update; apt-get install arm-performance-libraries
     
 EOF
 
