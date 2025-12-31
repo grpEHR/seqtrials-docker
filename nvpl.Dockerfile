@@ -32,7 +32,11 @@ RUN <<EOF
     R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc'))"
 EOF
 RUN <<EOF
-    # Recompile all R packages
+    # Recompile R packages
     rm ~/.Rprofile
-    R -e "install.packages(pkgs = unname(installed.packages()[, 'Package']), type = 'source', repos = 'https://cloud.r-project.org/')"
+    echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"')))' > ~/.Rprofile
+    # R core packages
+    R -e "getOption('repos'); install.packages(unname(installed.packages(lib.loc = .libPaths()[2])[, 'Package']), type = 'source')"
+    # Additional packages
+    R -e "getOption('repos'); install.packages(unname(installed.packages(lib.loc = .libPaths()[1])[, 'Package']), type = 'source')"
 EOF
