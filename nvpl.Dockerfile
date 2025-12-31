@@ -34,7 +34,7 @@ EOF
 RUN <<EOF
     # Recompile R packages
     rm ~/.Rprofile
-    echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"')))' > ~/.Rprofile
+    echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'")))' > ~/.Rprofile
     # R core packages
     R -e "getOption('repos'); install.packages(unname(installed.packages(lib.loc = .libPaths()[2])[, 'Package']), type = 'source')"
     # Additional packages
