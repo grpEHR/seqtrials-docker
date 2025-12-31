@@ -16,8 +16,8 @@ RUN <<EOF
     ./arm-performance-libraries_${ARMPL_VERSION}_deb/arm-performance-libraries_${ARMPL_VERSION}_deb.sh --accept --install-to /opt/arm
     rm -rf arm-performance-libraries*
     
-    # ARMPL installs to /opt/arm/armpl_${ARMPL_VERSION}_gcc-25.5/lib
-    ARMPL_LIB=/opt/arm/armpl_${ARMPL_VERSION}_gcc-25.5/lib
+    # ARMPL installs to /opt/arm/armpl_${ARMPL_VERSION}_gcc/lib
+    ARMPL_LIB=/opt/arm/armpl_${ARMPL_VERSION}_gcc/lib
     
     update-alternatives --install \
       /usr/lib/aarch64-linux-gnu/libblas.so.3 \
