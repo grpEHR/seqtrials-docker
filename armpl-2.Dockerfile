@@ -11,15 +11,13 @@ RUN <<EOF
     wget -nv https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${ARCH}.deb
     dpkg -i quarto-${QUARTO_VERSION}-linux-${ARCH}.deb
     # Install ARMPL
-    wget -nv https://developer.arm.com/-/cdn-downloads/permalink/Arm-Performance-Libraries/Version_${ARMPL_VERSION}/arm-performance-libraries_${ARMPL_VERSION}_Ubuntu-24.04_gcc.tar
-    tar -xf arm-performance-libraries_${ARMPL_VERSION}_Ubuntu-24.04_gcc.tar
-    ./arm-performance-libraries_${ARMPL_VERSION}_Ubuntu-24.04/arm-performance-libraries_${ARMPL_VERSION}_Ubuntu-24.04.sh --accept --install-to /opt/arm
+    wget https://developer.arm.com/-/cdn-downloads/permalink/Arm-Performance-Libraries/Version_${ARMPL_VERSION}/arm-performance-libraries_${ARMPL_VERSION}_deb_gcc.tar
+    tar -xf arm-performance-libraries_${ARMPL_VERSION}_deb_gcc.tar
+    ./arm-performance-libraries_${ARMPL_VERSION}_deb/arm-performance-libraries_${ARMPL_VERSION}_deb.sh --accept --install-to /opt/arm
     rm -rf arm-performance-libraries*
     
-    apt-get remove -y libopenblas-dev
-    
-    # ARMPL installs to /opt/arm/armpl_${ARMPL_VERSION}_gcc/lib
-    ARMPL_LIB=/opt/arm/armpl_${ARMPL_VERSION}_gcc/lib
+    # ARMPL installs to /opt/arm/armpl_${ARMPL_VERSION}_gcc-25.5/lib
+    ARMPL_LIB=/opt/arm/armpl_${ARMPL_VERSION}_gcc-25.5/lib
     
     update-alternatives --install \
       /usr/lib/aarch64-linux-gnu/libblas.so.3 \
@@ -41,12 +39,12 @@ RUN <<EOF
     echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'/bin/linux/noble-%s/%s", R.version["arch"], substr(getRversion(), 1, 3))))' > ~/.Rprofile
     R -e "sessionInfo(); install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc'))"
 EOF
-RUN <<EOF
-    # Recompile R packages
-    rm ~/.Rprofile
-    echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'")))' > ~/.Rprofile
-    # R core packages
-    R -e "sessionInfo(); getOption('repos'); install.packages(unname(installed.packages(lib.loc = .libPaths()[2])[, 'Package']), type = 'source')"
-    # Additional packages
-    R -e "sessionInfo(); getOption('repos'); install.packages(unname(installed.packages(lib.loc = .libPaths()[1])[, 'Package']), type = 'source')"
-EOF
+# RUN <<EOF
+#     # Recompile R packages
+#     rm ~/.Rprofile
+#     echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'")))' > ~/.Rprofile
+#     # R core packages
+#     R -e "sessionInfo(); getOption('repos'); install.packages(unname(installed.packages(lib.loc = .libPaths()[2])[, 'Package']), type = 'source')"
+#     # Additional packages
+#     R -e "sessionInfo(); getOption('repos'); install.packages(unname(installed.packages(lib.loc = .libPaths()[1])[, 'Package']), type = 'source')"
+# EOF
