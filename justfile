@@ -26,3 +26,5 @@ nvplmpbuild:
     docker build --pull --platform linux/arm64 --tag seqtrials --file nvplmp.Dockerfile .
 armplmpbuild:
     docker build --pull --platform linux/arm64 --tag seqtrials --file armpl-2-mp.Dockerfile .
+nvplmpoffbuild:
+    docker build --pull --platform linux/arm64 --tag seqtrials --file nvplmpoff.Dockerfile .
