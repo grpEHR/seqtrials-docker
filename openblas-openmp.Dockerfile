@@ -15,7 +15,7 @@ RUN <<EOF
     update-alternatives --set libopenblas.so.0-${ALTARCH}-linux-gnu /usr/lib/${ALTARCH}-linux-gnu/openblas-openmp/libopenblas.so.0
     update-alternatives --set libopenblas.so-${ALTARCH}-linux-gnu /usr/lib/${ALTARCH}-linux-gnu/openblas-openmp/libopenblas.so
     echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'/bin/linux/noble-%s/%s", R.version["arch"], substr(getRversion(), 1, 3))))' > ~/.Rprofile
-    R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc'))"
+    R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc', 'data.table.threads'))"
 EOF
 
 # Set default thread controls
