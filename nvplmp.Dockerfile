@@ -2,6 +2,7 @@ FROM rocker/r-ver:4.5.2
 ARG QUARTO_VERSION=1.8.26
 ARG CRAN_DATE=2025-12-22
 RUN <<EOF
+    set -e
     ARCH=$(dpkg --print-architecture)
     apt-get update; apt-get install -y wget time gnupg
     cd tmp
