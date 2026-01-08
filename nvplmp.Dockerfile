@@ -31,3 +31,6 @@ RUN <<EOF
     echo 'options(repos = c(CRAN = sprintf("https://packagemanager.posit.co/cran/'"${CRAN_DATE}"'/bin/linux/noble-%s/%s", R.version["arch"], substr(getRversion(), 1, 3))))' > ~/.Rprofile
     R -e "install.packages(c('SEQTaRget', 'tidyverse', 'quarto', 'tictoc', 'data.table.threads'))"
 EOF
+ENV OMP_NUM_THREADS=144
+ENV OMP_PROC_BIND=close
+ENV OMP_PLACES=cores
