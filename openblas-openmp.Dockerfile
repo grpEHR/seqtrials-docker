@@ -19,6 +19,6 @@ RUN <<EOF
 EOF
 
 # Set default thread controls
-ENV OMP_NUM_THREADS=4
+ENV OMP_NUM_THREADS=144
 ENV OMP_PROC_BIND=close
 ENV OMP_PLACES=cores
