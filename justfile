@@ -22,3 +22,5 @@ mklbuild:
     docker build --pull --platform linux/amd64 --tag seqtrials --file mkl.Dockerfile .
 armplbuild:
     docker build --pull --platform linux/arm64 --tag seqtrials --file armpl-2.Dockerfile .
+nvplmpbuild:
+    docker build --pull --platform linux/arm64 --tag seqtrials --file nvplmp.Dockerfile .
