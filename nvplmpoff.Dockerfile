@@ -1,6 +1,7 @@
 FROM rocker/r-ver:4.5.2
 ARG QUARTO_VERSION=1.8.26
 ARG CRAN_DATE=2025-12-22
+ARG CUDA_VERSION=13-1
 RUN <<EOF
     set -e
     ARCH=$(dpkg --print-architecture)
@@ -13,7 +14,7 @@ RUN <<EOF
     # Install NVPL
     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/sbsa/cuda-keyring_1.1-1_all.deb
     dpkg -i cuda-keyring_1.1-1_all.deb
-    apt-get update; apt-get -y install nvpl-blas nvpl-lapack libcublas-13-1
+    apt-get update; apt-get -y install nvpl-blas nvpl-lapack libcublas-${CUDA_VERSION}
     
     update-alternatives --install \
       /usr/lib/aarch64-linux-gnu/libblas.so.3 \
@@ -37,4 +38,8 @@ ENV OMP_NUM_THREADS=144
 ENV OMP_PROC_BIND=close
 ENV OMP_PLACES=cores
 ENV NVBLAS_CONFIG_FILE=/etc/nvblas.conf
-ENV LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libnvblas.so
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+ENV PATH=/usr/local/cuda/bin:${PATH}
+
+# To enable GPU offload at runtime, set:
+# LD_PRELOAD=/usr/local/cuda/lib64/libnvblas.so.13
