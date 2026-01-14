@@ -1,7 +1,7 @@
 FROM rocker/r-ver:4.5.2
 ARG QUARTO_VERSION=1.8.26
 ARG CRAN_DATE=2025-12-22
-ARG CUDA_VERSION=12-7
+ARG CUDA_VERSION=12-6
 RUN <<EOF
     set -e
     ARCH=$(dpkg --print-architecture)
@@ -42,4 +42,4 @@ ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
 ENV PATH=/usr/local/cuda/bin:${PATH}
 
 # To enable GPU offload at runtime, set:
-# LD_PRELOAD=/usr/local/cuda/lib64/libnvblas.so.13
+# LD_PRELOAD=/usr/local/cuda/lib64/libnvblas.so.12
