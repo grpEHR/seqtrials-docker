@@ -1,7 +1,7 @@
 FROM rocker/r-ver:4.5.2
 ARG QUARTO_VERSION=1.8.26
 ARG CRAN_DATE=2025-12-22
-ARG CUDA_VERSION=13-1
+ARG CUDA_VERSION=12-7
 RUN <<EOF
     set -e
     ARCH=$(dpkg --print-architecture)
