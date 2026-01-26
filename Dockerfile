@@ -3,7 +3,7 @@ ARG CRAN_DATE=2025-01-26
 ARG QUARTO_VERSION=1.8.27
 RUN <<EOF
     ARCH=$(dpkg --print-architecture)
-    apt-get update -y; apt-get upgrade -y; apt-get install wget time
+    apt-get update -y; apt-get upgrade -y; apt-get install wget time # pkg-config libcurl4-openssl-dev libxml2-dev zlib1g-dev libfontconfig1-dev libssl-dev
     cd tmp
     wget -nv https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${ARCH}.deb
     dpkg -i quarto-${QUARTO_VERSION}-linux-${ARCH}.deb
