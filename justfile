@@ -35,4 +35,7 @@ nvplmpoffamd64build:
 vcbuild:
     docker buildx build --pull --platform linux/arm64,linux/amd64 --tag seqtrials --file vc.Dockerfile .
 gobuild:
-    docker build -t gocryptfs-encrypt --file gocryptfs.Dockerfile .
+    docker buildx build --pull --platform linux/arm64,linux/amd64 --tag gocryptfs-encrypt --file gocryptfs.Dockerfile .
+gopublish:
+    docker tag gocryptfs-encrypt remlapmot/seqtrials:gocryptfs
+    docker push remlapmot/seqtrials:gocryptfs
