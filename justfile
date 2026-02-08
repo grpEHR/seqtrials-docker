@@ -32,3 +32,5 @@ nvplmpoffbuild:
     docker build --pull --platform linux/arm64 --tag seqtrials --file nvplmpoff.Dockerfile .
 nvplmpoffamd64build:
     docker build --pull --platform linux/amd64 --tag seqtrials --file nvplmpoff-amd64.Dockerfile .
+vcbuild:
+    docker buildx build --pull --platform linux/arm64,linux/amd64 --tag seqtrials --file vc.Dockerfile .
