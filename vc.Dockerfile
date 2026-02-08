@@ -13,9 +13,10 @@ EOF
 RUN <<EOF
    ARCH=$(dpkg --print-architecture)
    echo "${ARCH}"
-   apt-get update -y; apt-get upgrade; apt-get install -y --no-install-recommends libfuse2t64 dmsetup sudo
+   apt-get update -y; apt-get upgrade; apt-get install -y --no-install-recommends libfuse2t64 dmsetup sudo age gocryptfs fuse3
    cd tmp
    wget -nv https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracrypt-console-1.26.24-Ubuntu-24.04-${ARCH}.deb
    dpkg -i veracrypt-console-1.26.24-Ubuntu-24.04-${ARCH}.deb
    veracrypt --version
+   age --version
 EOF
